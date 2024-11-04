@@ -1,0 +1,20 @@
+{
+    "name": "michelint/sanctions",
+    "autoload": {
+        "psr-4": {
+            "Michelint\\Sanctions\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "michelint",
+            "email": "lemoderateurdelive@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^7.1",
+        "symfony/cache": "^7.1",
+        "doctrine/orm": "^3.3",
+        "doctrine/dbal": "^4.2"
+    }
+}
