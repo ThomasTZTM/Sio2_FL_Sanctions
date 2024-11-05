@@ -20,7 +20,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Créer un compte</a>
+                    <a class="nav-link" href="index.php?route=creercompte">Créer un compte</a>
                 </li>
 
 
@@ -28,3 +28,5 @@
         </div>
     </div>
 </nav>
+
+<hr class="my-4 opacity-25 container">
