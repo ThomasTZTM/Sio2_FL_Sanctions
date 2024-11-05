@@ -2,7 +2,7 @@
     "name": "michelint/sanctions",
     "autoload": {
         "psr-4": {
-            "Michelint\\Sanctions\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [
