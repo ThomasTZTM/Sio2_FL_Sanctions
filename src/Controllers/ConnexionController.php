@@ -6,7 +6,7 @@ use App\UserStory\CreateAccount;
 use App\UserStory\Login;
 use Doctrine\ORM\EntityManager;
 
-class ConnexionController
+class ConnexionController extends AbstractController
 {
     private EntityManager $entityManager;
 
@@ -17,8 +17,8 @@ class ConnexionController
     public function __construct(EntityManager $entityManager){
         $this->entityManager = $entityManager;
     }
-    public function creer() {
-        require_once __DIR__ . "/../../views/partial/header.php";
+
+    public function create() {
         $erreurs = [];
         $nom = "";
         $prenom = "";
@@ -51,6 +51,7 @@ class ConnexionController
                 $nvcompte = new CreateAccount($this->entityManager);
                 try {
                     $nvcompte->execute($nom, $prenom, $email, $mdp, $mdp2);
+                    $this->redirect('/sanctions/login');
                     // Faire un truc la
                 } catch (\Exception $e) {
                     echo "<div class='alert alert-danger ' role='alert'>".$e->getMessage()."</div>";
@@ -58,8 +59,11 @@ class ConnexionController
             }
 
         }
-        require_once __DIR__ . "/../../views/compte/createaccount.php";
-        require_once __DIR__ . "/../../views/partial/footer.php";
+        $this->render('login/create');
+    }
+
+    public function login() {
+        $this->render('login/login');
     }
 
 

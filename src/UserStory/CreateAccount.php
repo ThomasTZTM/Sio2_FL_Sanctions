@@ -69,6 +69,7 @@ class CreateAccount
         // Envoie du mail de confirmation
 
         //echo "Un email de confirmation à été envoyé à l'utilisateur";
+
         return $user;
     }
 

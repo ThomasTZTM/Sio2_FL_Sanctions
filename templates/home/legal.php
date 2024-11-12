@@ -1,13 +1,3 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mention Légal</title>
-</head>
-<body>
 <h1 class="text-center">Mention Légal</h1>
 
 
@@ -21,7 +11,7 @@
             <p>Adresse : 12 Rue des Savoirs, 25000 CONSBESAN</p>
             <p>Téléphone : 03 45 67 89 10  </p>
             <p>Directeur de la publication : M. Michelin, Proviseur  </p>
-            </blockquote>
+        </blockquote>
     </div>
 </div>
 
@@ -34,7 +24,7 @@
             <p>Nom de l’hébergeur : TZEditionWeb</p>
             <p>Adresse : 25000 CONSBESAN</p>
             <p>Téléphone : 07 89 12 35 67  </p>
-            </blockquote>
+        </blockquote>
     </div>
 </div>
 
@@ -100,6 +90,3 @@
 </div>
 
 <p class="text-center text-secondary mt-5">Mentions légales mises à jour le 5 novembre 2024.</p>
-
-</body>
-</html>

@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row">
         <div class="col mt-5">
-            <h3 class="fs-5 display-6">Support : Contact@gaudper.fr</h3>
+            <h3 class="fs-5 display-6">Support : vie.scolaire@gaudper.fr</h3>
             <h3 class="fs-5 display-6">Réseaux Sociaux : tiktok.com/gaudpersanction</h3>
 
             <ul class="navbar-nav me-auto mt-2 mb-5">

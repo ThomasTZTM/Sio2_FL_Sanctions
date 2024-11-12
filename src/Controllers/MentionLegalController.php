@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Controllers;
-class MentionLegalController
+class MentionLegalController extends AbstractController
 {
     // Méthode permettant de gérer la page d'accueil
-    public function mention() {
+    public function legal() {
         // Fait appel au modèle afin de récupérer les données dans la BDD
         // Pas besoin
         // Fait appel à la vue afin de renvoyé la page
-        require_once __DIR__ . "/../../views/partial/header.php";
-        require_once __DIR__ . "/../../views/annexe/mentionlegal.php";
-        require_once __DIR__ . "/../../views/partial/footer.php";
+        $this->render('home/legal');
     }
 }

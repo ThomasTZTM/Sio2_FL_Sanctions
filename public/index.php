@@ -9,58 +9,33 @@
 <?php
 // Recupérer l'entityManager
 $entityManager = require_once __DIR__ . '/../config/bootstrap.php';
+
+
+// Récupération des routes
+$routes = require_once __DIR__ . '/../config/routes.php'; // On inclu le fichier de route et on le met dans un tableau
+
+// Récupération de l'URL actuelle
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); // On récupère la partie route
+
+// Recherche de la route correspondante
+if (!isset($routes[$uri])) {
+$errorController = new \App\Controllers\ErrorController();
+$errorController->error404();
+exit;
+}
+
+// Récupération du contrôleur et de l'action
+[$controllerName, $action] = $routes[$uri]; // Destructuring
+$controllerClass = "App\\Controllers\\{$controllerName}";
+
+try {
+    // Instanciation du contrôleur et appel de l'action
+    $controller = new $controllerClass($entityManager);
+    $controller->$action();
+} catch (\Exception $e) {
+    error_log($e->getMessage());
+    $errorController = new \App\Controllers\ErrorController();
+    $errorController->error404();
+}
+
 ?>
-
-
-<?php
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////// LA SESSION ///////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-?>
-
-<?php
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////// LE ROUTING ///////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-?>
-
-<div class="container">
-    <?php
-    // Mise en place du routing
-    $route = $_GET['route'] ?? 'acceuil';
-    // Tester la valeur de $route
-    switch ($route) {
-
-        case 'acceuil':
-            $acceuilController = new \App\Controllers\AcceuilController();
-            $acceuilController->acceuil();
-            break;
-
-        case 'mentionlegal':
-            $acceuilController = new \App\Controllers\MentionLegalController();
-            $acceuilController->mention();
-            break;
-
-        case 'creercompte':
-            $acceuilController = new \App\Controllers\ConnexionController($entityManager);
-            $acceuilController->creer();
-            break;
-
-        default:
-            // Erreur 404
-            echo "❗​ Erreur 404 : Page non trouvé";
-            break;
-    }
-    ?>
-
-
-
-</div>
-<?php
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////// FIN /////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-?>
-
-</body>
-</html>
