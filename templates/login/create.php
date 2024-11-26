@@ -21,7 +21,7 @@
 
 
                     <div class="mb-3">
-                        <label for="prenom" class="form-label text-white">prenom : </label>
+                        <label for="prenom" class="form-label text-white">Prenom : </label>
                         <input
                                 type="text"
                                 class="form-control"
@@ -45,6 +45,8 @@
 
 
                     <div class="mb-3">
+                        <hr></hr>
+                        <p>Le mot de passe doit contenir au moins 8 caractères, dont une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.</p>
                         <label for="mdp" class="form-label text-white">Mot de passe : </label>
                         <input
                                 type="password"
