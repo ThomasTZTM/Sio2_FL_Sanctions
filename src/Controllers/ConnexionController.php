@@ -62,8 +62,37 @@ class ConnexionController extends AbstractController
         $this->render('login/create');
     }
 
-    public function login() {
+    public function login(){
+        $error = null;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $login = new Login($this->entityManager);
+            try {
+                $user = $login->execute($_POST['email'], $_POST['password']);
+            } catch (\Exception $e) {
+                echo "<div class='alert alert-danger ' role='alert'>".$e->getMessage()."</div>";
+                $user = null;
+            }
+            if ($user != null) {
+                $_SESSION["utilisateur"] = [
+                    'id' => $user->getId(),
+                    'nom' => $user->getNom(),
+                    'prenom' => $user->getPrenom(),
+                    'email' => $user->getEmail(),
+                ];
+                $this->redirect('/sanctions');
+            } else {
+                $error = "Email ou mot de passe incorrect.";
+            }
+        }
         $this->render('login/login');
+    }
+
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+        $this->redirect('/sanctions');
+        exit;
     }
 
 

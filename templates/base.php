@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 
 
 <html lang="en">
@@ -17,6 +16,20 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
 
+<?php
+session_start();
+
+if (isset($_SESSION["utilisateur"])) {
+    $ius = $_SESSION["utilisateur"]["id"];
+    $nus = $_SESSION["utilisateur"]["nom"];
+    $pus = $_SESSION["utilisateur"]["prenom"];
+    $eus = $_SESSION["utilisateur"]["email"];
+
+} else {
+    $ius = null;
+}
+?>
+
 <nav class="navbar navbar-expand-lg " data-bs-theme="light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/sanctions">
@@ -25,20 +38,33 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarColor03">
-            <ul class="navbar-nav me-auto">
+        <?php if ($ius == null) : ?>
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav me-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/sanctions/login">Connexion</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sanctions/login">Connexion</a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/sanctions/create">Créer un compte</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sanctions/create">Créer un compte</a>
+                    </li>
+                </ul>
+            </div>
+        <?php endif; ?>
+        <?php if ($ius != null) : ?>
+            <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle me-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Action de <?php echo "$nus $pus"?>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/sanctions/logout">Deconnexion</a></li>
+                    <li><a class="dropdown-item" href="#">Action2</a></li>
+                    <li><a class="dropdown-item" href="#">Action3</a></li>
+                </ul>
+            </div>
 
-
-            </ul>
-        </div>
+        <?php endif; ?>
     </div>
 </nav>
 <hr class="my-4 opacity-25 container">

@@ -17,7 +17,7 @@ class Login
     public function execute(string $email, string $password): ?User
     {
         if (empty($email) || empty($password)) {
-            throw new \InvalidArgumentException("Email and password are required.");
+            throw new \InvalidArgumentException("L'email et le mot de passe sont obligatoires.");
         }
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
@@ -26,10 +26,10 @@ class Login
             return null;
         }
 
-        if (password_verify($password, $user->getPassword())) {
+        if (password_verify($password, $user->getMdp())) {
             return $user;
+        }else{
+            throw new \InvalidArgumentException("Identifiant ou mot de passe incorrect.");
         }
-
-        return null;
     }
 }
