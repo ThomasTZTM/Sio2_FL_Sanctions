@@ -16,6 +16,7 @@
                                 id="nom"
                                 name="nom"
                                 placeholder="Saisir votre nom"
+                                value="<?= htmlspecialchars($_SESSION['form_data']['nom'] ?? '') ?>"
                         >
                     </div>
 
@@ -28,6 +29,7 @@
                                 id="prenom"
                                 name="prenom"
                                 placeholder="Saisir votre prenom"
+                                value="<?= htmlspecialchars($_SESSION['form_data']['prenom'] ?? '') ?>"
                         >
                     </div>
 
@@ -40,6 +42,7 @@
                                 id="email"
                                 name="email"
                                 placeholder="Saisir l'adresse mail"
+                                value="<?= htmlspecialchars($_SESSION['form_data']['mail'] ?? '') ?>"
                         >
                     </div>
 
@@ -72,7 +75,7 @@
 
                     <button type="submit" class="btn btn-outline-warning mt-4">Créer le compte</button>
                 </form>
-
+                <?php unset($_SESSION["form_data"]);?>
             </div>
         </div>
     </div>
