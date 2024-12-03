@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Entity\User;
 use App\UserStory\CreateAccount;
 use App\UserStory\Login;
@@ -10,90 +11,101 @@ class ConnexionController extends AbstractController
 {
     private EntityManager $entityManager;
 
-    /**
-     * @param EntityManager $entityManager
-     */
-
-    public function __construct(EntityManager $entityManager){
+    public function __construct(EntityManager $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
-    public function create() {
-        $erreurs = [];
-        $nom = "";
-        $prenom = "";
-        $email = "";
-        $mdp = "";
-        $mdp2 = "";
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $nom = $_POST["nom"];
-            $prenom = $_POST["prenom"];
-            $email = $_POST["email"];
-            $mdp = $_POST["mdp"];
-            $mdp2 = $_POST["mdp2"];
+    public function create()
+    {
+        if ($this->isAuthenticated()) {
+            $this->redirect('/sanctions');
+        }
 
-            if (empty($nom)) {
-                $erreurs['nom'] = "Le nom est obligatoire";
-            }
-            if (empty($prenom)) {
-                $erreurs['prenom'] = "Le prenom est obligatoire";
-            }
-            if (empty($email)) {
-                $erreurs['email'] = "Le email est obligatoire";
-            }
-            if (empty($mdp)) {
-                $erreurs['mdp'] = "Le mdp est obligatoire";
-            }
-            if (empty($mdp2)) {
-                $erreurs['mdp2'] = "La re-saisie mdp est obligatoire";
-            }
-            if (count($erreurs) == 0) {
-                $nvcompte = new CreateAccount($this->entityManager);
-                try {
-                    $nvcompte->execute($nom, $prenom, $email, $mdp, $mdp2);
-                    $this->redirect('/sanctions/login');
-                    // Faire un truc la
-                } catch (\Exception $e) {
-                    echo "<div class='alert alert-danger ' role='alert'>".$e->getMessage()."</div>";
+        $erreurs = [];
+        $formData = [
+            'nom' => '',
+            'prenom' => '',
+            'email' => '',
+            'mdp' => '',
+            'mdp2' => ''
+        ];
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $formData = [
+                'nom' => $_POST["nom"] ?? '',
+                'prenom' => $_POST["prenom"] ?? '',
+                'email' => $_POST["email"] ?? '',
+                'mdp' => $_POST["mdp"] ?? '',
+                'mdp2' => $_POST["mdp2"] ?? ''
+            ];
+
+            foreach ($formData as $field => $value) {
+                if (empty($value)) {
+                    $erreurs[$field] = "Le champ " . $field . " est obligatoire";
                 }
             }
 
+            if (empty($erreurs)) {
+                $nvcompte = new CreateAccount($this->entityManager);
+                try {
+                    $nvcompte->execute(
+                        $formData['nom'],
+                        $formData['prenom'],
+                        $formData['email'],
+                        $formData['mdp'],
+                        $formData['mdp2']
+                    );
+                    $this->redirect('/sanctions/login');
+                } catch (\Exception $e) {
+                    $erreurs['general'] = $e->getMessage();
+                }
+            }
         }
-        $this->render('login/create');
+
+        $this->render('login/create', [
+            'erreurs' => $erreurs,
+            'formData' => $formData
+        ]);
     }
 
-    public function login(){
+    public function login()
+    {
+        if ($this->isAuthenticated()) {
+            $this->redirect('/sanctions');
+        }
+
         $error = null;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $login = new Login($this->entityManager);
             try {
-                $user = $login->execute($_POST['email'], $_POST['password']);
+                $user = $login->execute(
+                    $_POST['email'] ?? '',
+                    $_POST['password'] ?? ''
+                );
+
+                if ($user instanceof User) {
+                    $_SESSION['utilisateur'] = [
+                        'id' => $user->getId(),
+                        'nom' => $user->getNom(),
+                        'prenom' => $user->getPrenom(),
+                        'email' => $user->getEmail(),
+                    ];
+                    $this->redirect('/sanctions');
+                }
             } catch (\Exception $e) {
-                echo "<div class='alert alert-danger ' role='alert'>".$e->getMessage()."</div>";
-                $user = null;
-            }
-            if ($user != null) {
-                $_SESSION["utilisateur"] = [
-                    'id' => $user->getId(),
-                    'nom' => $user->getNom(),
-                    'prenom' => $user->getPrenom(),
-                    'email' => $user->getEmail(),
-                ];
-                $this->redirect('/sanctions');
-            } else {
-                $error = "Email ou mot de passe incorrect.";
+                $error = $e->getMessage();
             }
         }
-        $this->render('login/login');
+
+        $this->render('login/login', ['error' => $error]);
     }
 
     public function logout()
     {
         session_unset();
         session_destroy();
+        session_start();
         $this->redirect('/sanctions');
-        exit;
     }
-
-
 }

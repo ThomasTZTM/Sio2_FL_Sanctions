@@ -4,30 +4,42 @@ namespace App\Controllers;
 
 abstract class AbstractController
 {
-    protected function render(string $template, array $data = []): void
+    protected function render(string $template, array $params = []): void
     {
-        extract($data);
-
+        extract($params);
         ob_start();
-        require __DIR__ . '/../../templates/' . $template . '.php';
+        require_once __DIR__ . "/../../templates/{$template}.php";
         $content = ob_get_clean();
-
-        require __DIR__ . '/../../templates/base.php';
+        require_once __DIR__ . "/../../templates/base.php";
     }
 
     protected function redirect(string $url): void
     {
         header("Location: $url");
-        exit;
+        exit();
     }
 
-    public function renderError(int $code = 404, string $message = null): void
+    protected function getUser(): ?array
+    {
+        return $_SESSION['utilisateur'] ?? null;
+    }
+
+    protected function isAuthenticated(): bool
+    {
+        return isset($_SESSION['utilisateur']) && !empty($_SESSION['utilisateur']);
+    }
+
+    protected function requireAuth(): void
+    {
+        if (!$this->isAuthenticated()) {
+            $this->redirect('/sanctions/login');
+        }
+    }
+
+    protected function renderError(int $code = 404, string $message = null): void
     {
         http_response_code($code);
-
-        if ($code === 404) {
-            $this->render('error/404');
-            exit;
-        }
+        $this->render('error/' . $code, ['message' => $message]);
+        exit();
     }
 }
