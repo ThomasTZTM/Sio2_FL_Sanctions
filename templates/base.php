@@ -35,7 +35,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="/sanctions/logout">Deconnexion</a></li>
-                    <li><a class="dropdown-item" href="#">Action2</a></li>
+                    <li><a class="dropdown-item" href="/promotions/create">Créer une promotion</a></li>
                     <li><a class="dropdown-item" href="#">Action3</a></li>
                 </ul>
             </div>
