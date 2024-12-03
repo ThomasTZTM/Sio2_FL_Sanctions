@@ -1,12 +1,15 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Liste des promotions</h1>
-        <a href="/promotion/create" class="btn btn-warning">Ajouter une promotion</a>
+        <div>
+            <a href="/etudiant/import" class="btn btn-warning me-2">Importer des étudiants</a>
+            <a href="/promotions/create" class="btn btn-warning">Ajouter une promotion</a>
+        </div>
     </div>
 
     <?php if (empty($promotions)): ?>
         <div class="alert alert-info">
-            Aucune promotion dispo pour le moment.
+            Aucune promotion n'a été créée pour le moment.
         </div>
     <?php else: ?>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -18,6 +21,31 @@
                             <p class="card-text">
                                 Année : <?= htmlspecialchars($promotion->getAnnee()) ?>
                             </p>
+
+                            <?php
+                            $etudiants = $entityManager->getRepository(\App\Entity\Etudiant::class)
+                                ->findBy(['promotion' => $promotion]);
+                            ?>
+
+                            <?php if (!empty($etudiants)): ?>
+                                <div class="mt-3">
+                                    <small class="text-muted">
+                                        <strong>Liste des étudiants : </strong>
+                                        <div class="small mt-1">
+                                            <?php foreach ($etudiants as $etudiant): ?>
+                                                <div class="">
+                                                    <?= htmlspecialchars($etudiant->getPrenom()) ?>
+                                                    <?= htmlspecialchars($etudiant->getNom()) ?>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </small>
+                                </div>
+                            <?php else: ?>
+                                <div class="mt-3">
+                                    <small class="text-muted">Aucun étudiant dans cette promotion</small>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

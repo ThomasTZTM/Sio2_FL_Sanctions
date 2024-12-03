@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Entity\Promotion;
-use App\UserStory\CreatePromotion;
 use Doctrine\ORM\EntityManager;
 
 class PromotionController extends AbstractController
@@ -17,22 +16,23 @@ class PromotionController extends AbstractController
 
     public function index(): void
     {
-        // Si utilisateur connecter
+        // Vérifier si l'utilisateur est connecté
         $this->requireAuth();
 
-        // Récupère toute les promos
+        // Récupérer toutes les promotions
         $promotions = $this->entityManager
             ->getRepository(Promotion::class)
             ->findAll();
 
         $this->render('promotion/index', [
-            'promotions' => $promotions
+            'promotions' => $promotions,
+            'entityManager' => $this->entityManager
         ]);
     }
 
     public function create(): void
     {
-        // La méthode create existe déjà, on la laisse telle quelle
+        // Vérifier si l'utilisateur est connecté
         $this->requireAuth();
 
         $errors = [];
@@ -47,8 +47,6 @@ class PromotionController extends AbstractController
                 'annee' => $_POST['annee'] ?? ''
             ];
 
-            // Les erreurs :
-
             if (empty($formData['libelle'])) {
                 $errors['libelle'] = "Le libellé est obligatoire";
             }
@@ -58,9 +56,14 @@ class PromotionController extends AbstractController
 
             if (empty($errors)) {
                 try {
-                    $createPromotion = new CreatePromotion($this->entityManager);
-                    $createPromotion->execute($formData['libelle'], $formData['annee']);
-                    $this->redirect('/promotion');
+                    $promotion = new Promotion();
+                    $promotion->setLibelle($formData['libelle']);
+                    $promotion->setAnnee($formData['annee']);
+
+                    $this->entityManager->persist($promotion);
+                    $this->entityManager->flush();
+
+                    $this->redirect('/promotions');
                 } catch (\Exception $e) {
                     $errors['general'] = $e->getMessage();
                 }
