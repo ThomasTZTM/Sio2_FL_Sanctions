@@ -26,11 +26,13 @@ abstract class AbstractController
 
     protected function isAuthenticated(): bool
     {
+        // return si on est connecter ou pas
         return isset($_SESSION['utilisateur']) && !empty($_SESSION['utilisateur']);
     }
 
     protected function requireAuth(): void
     {
+        // si on a besoin d'etre connecter alors on return sur la page login
         if (!$this->isAuthenticated()) {
             $this->redirect('/sanctions/login');
         }

@@ -46,6 +46,8 @@ class PromotionController extends AbstractController
                 'annee' => $_POST['annee'] ?? ''
             ];
 
+            // Les erreurs :
+
             if (empty($formData['libelle'])) {
                 $errors['libelle'] = "Le libellé est obligatoire";
             }
