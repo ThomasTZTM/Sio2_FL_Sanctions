@@ -7,5 +7,8 @@ return [
     '/sanctions/login' => ['ConnexionController', 'login'],
     '/sanctions/logout' => ['ConnexionController', 'logout'],
     '/legal' => ['MentionLegalController', 'legal'],
-    '/promotions/create' => ['PromotionController', 'create']
+    '/promotions/create' => ['PromotionController', 'create'],
+
+    // Annexe pour voir les promotions
+    '/promotions/affichetest' => ['PromotionController', 'index']
 ];
