@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Entity\Promotion;
-use App\UserStory\CreatePromotion;
 use Doctrine\ORM\EntityManager;
 
 class PromotionController extends AbstractController
@@ -15,9 +14,24 @@ class PromotionController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    public function index(): void
+    {
+        // Si utilisateur connecter
+        $this->requireAuth();
+
+        // Récupère toute les promos
+        $promotions = $this->entityManager
+            ->getRepository(Promotion::class)
+            ->findAll();
+
+        $this->render('promotion/index', [
+            'promotions' => $promotions
+        ]);
+    }
+
     public function create(): void
     {
-        // Vérifier si l'utilisateur est connecté
+        // La méthode create existe déjà, on la laisse telle quelle
         $this->requireAuth();
 
         $errors = [];
@@ -32,7 +46,6 @@ class PromotionController extends AbstractController
                 'annee' => $_POST['annee'] ?? ''
             ];
 
-            // Validation des champs
             if (empty($formData['libelle'])) {
                 $errors['libelle'] = "Le libellé est obligatoire";
             }
@@ -44,7 +57,7 @@ class PromotionController extends AbstractController
                 try {
                     $createPromotion = new CreatePromotion($this->entityManager);
                     $createPromotion->execute($formData['libelle'], $formData['annee']);
-                    $this->redirect('/sanctions');
+                    $this->redirect('/promotions');
                 } catch (\Exception $e) {
                     $errors['general'] = $e->getMessage();
                 }
