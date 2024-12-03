@@ -74,6 +74,7 @@
 
 
                     <button type="submit" class="btn btn-outline-warning mt-4">Créer le compte</button>
+                    <a href="/sanctions/login" class="btn btn-outline-primary mt-4">Connexion</a>
                 </form>
                 <?php unset($_SESSION["form_data"]);?>
             </div>
