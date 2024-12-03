@@ -10,19 +10,17 @@ class Etudiant
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name:'id', type: 'integer')]
+    #[ORM\Column(name: 'id', type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(name:'nom', type: 'string', length: 100)]
+    #[ORM\Column(name: 'nom', type: 'string', length: 100)]
     private string $nom;
 
-    #[ORM\Column(name:'prenom', type: 'string', length: 100)]
+    #[ORM\Column(name: 'prenom', type: 'string', length: 100)]
     private string $prenom;
 
-
     #[ORM\ManyToOne(targetEntity: Promotion::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    #[ORM\Column(name: 'id_promotion', type: 'integer')]
+    #[ORM\JoinColumn(name: 'id_promotion', nullable: false)]
     private Promotion $promotion;
 
     public function getId(): ?int
