@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Liste des promotions</h1>
-        <a href="/promotions/create" class="btn btn-warning">Ajouter une promotion</a>
+        <a href="/promotion/create" class="btn btn-warning">Ajouter une promotion</a>
     </div>
 
     <?php if (empty($promotions)): ?>
