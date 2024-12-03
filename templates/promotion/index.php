@@ -3,7 +3,7 @@
         <h1>Liste des promotions</h1>
         <div>
             <a href="/etudiant/import" class="btn btn-warning me-2">Importer des étudiants</a>
-            <a href="/promotions/create" class="btn btn-warning">Ajouter une promotion</a>
+            <a href="/promotion/create" class="btn btn-warning">Ajouter une promotion</a>
         </div>
     </div>
 

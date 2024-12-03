@@ -14,6 +14,7 @@ return [
     '/legal' => ['MentionLegalController', 'legal'],
 
     // Promotion
+    '/promotions' => ['PromotionController', 'index'],
     '/promotion/create' => ['PromotionController', 'create'],
     '/promotion/affichetest' => ['PromotionController', 'index'], // Annexe
 
