@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entity\Promotion;
+use App\UserStory\CreatePromotion;
 use Doctrine\ORM\EntityManager;
 
 class PromotionController extends AbstractController
@@ -59,7 +60,7 @@ class PromotionController extends AbstractController
                 try {
                     $createPromotion = new CreatePromotion($this->entityManager);
                     $createPromotion->execute($formData['libelle'], $formData['annee']);
-                    $this->redirect('/promotions');
+                    $this->redirect('/promotion');
                 } catch (\Exception $e) {
                     $errors['general'] = $e->getMessage();
                 }
