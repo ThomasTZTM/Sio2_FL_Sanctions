@@ -14,9 +14,9 @@ return [
     '/legal' => ['MentionLegalController', 'legal'],
 
     // Promotion
-    '/promotions/create' => ['PromotionController', 'create'],
-    '/promotions/affichetest' => ['PromotionController', 'index'], // Annexe
+    '/promotion/create' => ['PromotionController', 'create'],
+    '/promotion/affichetest' => ['PromotionController', 'index'], // Annexe
 
     // Import des etudiant
-    '/etudiants/import' => ['EtudiantController', 'import']
+    '/etudiant/import' => ['EtudiantController', 'import']
 ];
