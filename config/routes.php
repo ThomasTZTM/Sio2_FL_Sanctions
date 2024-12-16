@@ -19,5 +19,8 @@ return [
     '/promotion/affichetest' => ['PromotionController', 'index'], // Annexe
 
     // Import des etudiant
-    '/etudiant/import' => ['EtudiantController', 'import']
+    '/etudiant/import' => ['EtudiantController', 'import'],
+
+    '/sanction/create' => ['SanctionController', 'create'],
+
 ];
