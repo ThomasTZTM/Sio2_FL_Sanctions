@@ -22,5 +22,6 @@ return [
     '/etudiant/import' => ['EtudiantController', 'import'],
 
     '/sanction/create' => ['SanctionController', 'create'],
+    '/divers/brouette' => ['DiversController', 'index'],
 
 ];

@@ -2,13 +2,13 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Liste des promotions</h1>
         <div>
-            <a href="/etudiant/import" class="btn btn-warning me-2">Importer des étudiants</a>
-            <a href="/promotion/create" class="btn btn-warning">Ajouter une promotion</a>
+            <a href="/etudiant/import" class="btn btn-warning me-2 mt-2">Importer des étudiants</a>
+            <a href="/promotion/create" class="btn btn-warning mt-2">Ajouter une promotion</a>
         </div>
     </div>
 
     <?php if (empty($promotions)): ?>
-        <div class="alert alert-info">
+        <div class="alert alert-warning">
             Aucune promotion n'a été créée pour le moment.
         </div>
     <?php else: ?>
