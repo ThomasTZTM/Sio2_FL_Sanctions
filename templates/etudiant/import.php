@@ -7,7 +7,7 @@
                 </div>
                 <div class="card-body">
                     <?php if (!empty($success)): ?>
-                        <div class="alert alert-success">
+                        <div class="alert alert-warning">
                             <?= htmlspecialchars($success) ?>
                         </div>
                     <?php endif; ?>

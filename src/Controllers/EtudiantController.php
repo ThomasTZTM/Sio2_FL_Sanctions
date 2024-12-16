@@ -45,7 +45,6 @@ class EtudiantController extends AbstractController
                     $promotion = $this->entityManager
                         ->getRepository(Promotion::class)
                         ->find($_POST['promotion_id']);
-
                     if (!$promotion) {
                         throw new \Exception("La promotion sélectionnée n'existe pas");
                     }
