@@ -38,6 +38,8 @@
                     <li><a class="dropdown-item" href="/promotion/create">Créer une promotion</a></li>
                     <li><a class="dropdown-item" href="/promotion/affichetest">Voir les promotions</a></li>
                     <li><a class="dropdown-item" href="/etudiant/import">Ajouter des étudiants</a></li>
+                    <li><a class="dropdown-item" href="/sanction/create">Créer une sanction</a></li>
+                    <li><a class="dropdown-item" href="/divers/brouette">Brouette</a></li>
                 </ul>
             </div>
         <?php endif; ?>
