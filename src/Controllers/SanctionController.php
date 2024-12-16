@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Entity\Promotion;
+use App\Entity\Sanction;
 use App\UserStory\CreateSanction;
 use Doctrine\ORM\EntityManager;
 
@@ -12,6 +14,22 @@ class SanctionController extends AbstractController
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
+    }
+
+    public function index(): void
+    {
+        // Vérifier si l'utilisateur est connecté
+        $this->requireAuth();
+
+        // Récupérer toutes les promotions
+        $sanctions = $this->entityManager
+            ->getRepository(Sanction::class)
+            ->findAll();
+
+        $this->render('sanction/index', [
+            'sanctions' => $sanctions,
+            'entityManager' => $this->entityManager
+        ]);
     }
 
     public function create(): void
