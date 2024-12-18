@@ -64,6 +64,14 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-warning">Importer les étudiants</button>
                         </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div>
+                                <a href="/promotions" class="btn btn-secondary me-2 mt-2">Voir les promotions</a>
+                                <a href="/promotion/create" class="btn btn-secondary mt-2">Ajouter une promotion</a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

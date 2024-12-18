@@ -50,6 +50,12 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-warning">Créer la promotion</button>
                         </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div>
+                                <a href="/promotions" class="btn btn-secondary me-2 mt-2">Voir les promotions</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

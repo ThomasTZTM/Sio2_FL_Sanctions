@@ -48,8 +48,12 @@
                             </p>
                         </div>
                     </div>
+
                 </div>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
+    <div class="mb-2">
+        <a href="/promotions" class="btn btn-secondary me-2 mt-2">Voir les promotions</a>
+    </div>
 </div>

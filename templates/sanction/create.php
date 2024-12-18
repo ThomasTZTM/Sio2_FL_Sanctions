@@ -1,7 +1,9 @@
 
 <div class="container mt-4">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
+
             <div class="card">
                 <div class="card-header">
                     <h2 class="mb-0 text-center text-secondary">Créer une sanction</h2>
@@ -71,6 +73,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
