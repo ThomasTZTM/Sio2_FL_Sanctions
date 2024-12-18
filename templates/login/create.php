@@ -7,6 +7,9 @@
                 <form action="" method="POST" novalidate>
 
                     <h1 class="mb-5 text-center">Créer un compte : </h1>
+                    <div class="alert alert-danger" role="alert">
+                        <?php foreach ($erreurs as $value) { echo $value." et "; } ?>
+                    </div>
 
                     <div class="mb-3">
                         <label for="nom" class="form-label text-white">Nom : </label>

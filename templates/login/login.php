@@ -19,4 +19,13 @@
 
         <button type="submit" class="btn btn-outline-primary mt-4">Valider</button>
         <a href="/sanctions/create" class="btn btn-outline-warning mt-4">Créer un compte</a>
+
+        <div class="alert alert-info mt-5" role="alert">
+            Compte existant : /!\ Aide de développement /!\
+            <br>
+            - thomas@sanction.php
+            <br>
+            - Ab.45678
+
+        </div>
     </form>

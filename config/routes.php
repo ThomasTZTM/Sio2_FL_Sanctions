@@ -21,9 +21,11 @@ return [
     // Import des etudiant
     '/etudiant/import' => ['EtudiantController', 'import'],
 
+    // Sanction
     '/sanction/create' => ['SanctionController', 'create'],
     '/sanction/index' => ['SanctionController', 'index'],
 
+    // Divers
     '/divers/brouette' => ['DiversController', 'index']
 
 ];
