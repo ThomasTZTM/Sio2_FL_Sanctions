@@ -23,7 +23,7 @@
         <div class="alert alert-info mt-5" role="alert">
             Compte existant : /!\ Aide de développement /!\
             <br>
-            - thomas@sanction.php
+            - thomas@sanction.php / dany@sanction.php
             <br>
             - Ab.45678
 

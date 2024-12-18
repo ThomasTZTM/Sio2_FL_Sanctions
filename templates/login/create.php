@@ -7,8 +7,13 @@
                 <form action="" method="POST" novalidate>
 
                     <h1 class="mb-5 text-center">Créer un compte : </h1>
-                    <div class="alert alert-danger" role="alert">
-                        <?php foreach ($erreurs as $value) { echo $value." et "; } ?>
+                    <div class="alert alert-warning text-center" role="alert">
+                        <?php
+                        if (empty($erreurs)){
+                            echo "Saisissez vos informations !";
+                        }
+                        foreach ($erreurs as $value) { echo $value." et "; }
+                        ?>
                     </div>
 
                     <div class="mb-3">
