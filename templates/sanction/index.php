@@ -33,7 +33,7 @@
                             </p>
 
                             <p class="card-text">
-                                Date de l'incident : <?= $sanction->getDateIncident()->format('d/m/Y H:i') ?>
+                                Date de l'incident : <?= $sanction->getDateIncident()->format('d/m/Y') ?>
                             </p>
 
 
