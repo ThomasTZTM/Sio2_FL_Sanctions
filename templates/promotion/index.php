@@ -1,10 +1,11 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Liste des promotions</h1>
-        <div>
+        <div class="ms-5">
             <a href="/etudiant/import" class="btn btn-warning me-2 mt-2">Importer des étudiants</a>
             <a href="/promotion/create" class="btn btn-warning me-2 mt-2">Ajouter une promotion</a>
             <a href="/sanction/create" class="btn btn-secondary me-2 mt-2">Créer une sanction</a>
+            <a href="/sanction/index" class="btn btn-secondary me-2 mt-2">Voir les sanctions</a>
         </div>
     </div>
 

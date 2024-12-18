@@ -16,11 +16,18 @@
                 <h2 class="text-center text-secondary">
                     Bienvenue sur votre espace GAUDPER. Vous pouvez maintenant accéder à toutes les fonctionnalités de l'application.
                 </h2>
+                <div class="d-flex justify-content-center align-items-center mb-2">
+                    <div>
+                        <a href="/promotions" class="btn btn-secondary me-2 mt-2">Voir les promotions</a>
+                    </div>
+                </div>
             <?php endif; ?>
         </div>
         <div class="col col-12 col-lg-6">
             <img src="./assets/images/acceuil3.png" alt="Logo gaudper" width="120" height="400"
                  class="d-inline-block align-top container-fluid">
         </div>
+
+
     </div>
 </div>
